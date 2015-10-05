@@ -49,21 +49,26 @@ public class SimpleTranslatorGUI extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(10, 10, 10, 10));
         //grid.getChildren().add(btn);
-        grid.add(btn, 0, 2);
+        grid.add(btn, 0, 3);
         
-        grid.add(resultTextField, 1, 2);
+        grid.add(resultTextField, 1, 3);
         
         Text sceneTitle = new Text("欢迎！输入的文本");
         sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         
-        grid.add(sceneTitle, 0, 0, 2, 1);
+        grid.add(sceneTitle, 0, 0, 2, 1);  
+        
+        Text sceneDescription = new Text(getWelcomePageDescriptionText());
+        sceneDescription.setFont(Font.font("Times New Roman",FontWeight.NORMAL , 15));
+        
+        grid.add(sceneDescription, 0, 1, 3, 1);
         
         
         Label userName = new Label("Enter text to translate:");
-        grid.add(userName, 0, 1);
+        grid.add(userName, 0, 2);
         
         final TextField textToTranslateField = new TextField();
-        grid.add(textToTranslateField, 1, 1);
+        grid.add(textToTranslateField, 1, 2);
         
         btn.setOnAction(new EventHandler<ActionEvent>() {
             
@@ -89,7 +94,7 @@ public class SimpleTranslatorGUI extends Application {
             
         });
         
-        Scene scene = new Scene(grid, 300, 110);
+        Scene scene = new Scene(grid, 500, 500);
         
         
         primaryStage.setTitle("Simple English-Chinese Translator");
@@ -97,6 +102,11 @@ public class SimpleTranslatorGUI extends Application {
         primaryStage.setScene(scene);
         scene.getStylesheets().add(SimpleTranslatorGUI.class.getResource("main.css").toExternalForm());
         primaryStage.show();
+    }
+    
+    private static String getWelcomePageDescriptionText()
+    {
+        return "This program is designed to translate English words to Simplified Chinese.";
     }
 
     /**
