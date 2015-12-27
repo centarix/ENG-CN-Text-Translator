@@ -117,3 +117,4 @@ public class SimpleTranslatorGUI extends Application {
     }
     
 }
+

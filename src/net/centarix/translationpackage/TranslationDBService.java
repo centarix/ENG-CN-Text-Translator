@@ -17,7 +17,7 @@ import javax.persistence.criteria.Root;
  * @author klove
  */
 public class TranslationDBService {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("SimpleTranslatorGUIPU");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("TPU");
     private EntityManager em = emf.createEntityManager();
     private EntityTransaction tx = em.getTransaction();
     

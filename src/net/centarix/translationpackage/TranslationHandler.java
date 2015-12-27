@@ -21,11 +21,12 @@ public class TranslationHandler {
 	public String to = LanguageCodes.Chinese;
 	public static String CLIENT_ID = "E7VWWToGOPOspQ2McQVK5g";
 	public static String CLIENT_SECRET = "hryznq3yjNoeu+UEQsfGaN07P1rHfDHY7lSl8Xubke8=";
-        //public TranslationDBService translationService = new TranslationDBService();
+        public TranslationDBService translationService = new TranslationDBService();
 
 	public TranslationHandler(String textToTranslate)
 	{
-            TranslationItem translation = null; //DBLookup(textToTranslate);
+            TranslationItem translation = null;
+            DBLookup(textToTranslate);
             if(translation == null)
             {
                 WSCall(textToTranslate);
@@ -89,6 +90,7 @@ public class TranslationHandler {
 			e.printStackTrace();
 			return;
 		} finally {
+                        saveTranslation(textToTranslate, translatedText);
 			if(connection != null) {
 				connection.disconnect();
 			}
@@ -97,7 +99,12 @@ public class TranslationHandler {
         
         public TranslationItem DBLookup(String textToTranslate)
         {
-            return null; //translationService.findTranslationByEnglishText(textToTranslate);
+            return translationService.findTranslationByEnglishText(textToTranslate);
+        }
+        
+        public void saveTranslation(String textToTranslate, String translation)
+        {
+            translationService.createTranslationItem(textToTranslate, translation);
         }
 
 	public String getTranslation(String headerValue, String textToTranslate)

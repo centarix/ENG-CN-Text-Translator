@@ -12,13 +12,14 @@ import javax.persistence.*;
  * @author klove
  */
 @Entity
-@Table(name = "dbo.TranslationItem")
+@Table(name = "dbo.translationitem")
 public class TranslationItem {
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
     long Id;
     String EnglishText;
     String ChineseText;
     String PinYin;
+    @Temporal(TemporalType.DATE) 
     Date CreatedDate;
     int LookupCount;
     
