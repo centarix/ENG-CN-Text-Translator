@@ -25,9 +25,13 @@ public class TranslationDBService {
 
         TranslationItem translation = new TranslationItem(englishText, chineseText, "");
         
-        tx.begin();
-        em.persist(translation);
-        tx.commit();
+        if(findTranslationByEnglishText(englishText) == null)
+        {
+            tx.begin();
+            em.persist(translation);
+            tx.commit();
+            return translation;
+        }
         return translation;
     }
     
