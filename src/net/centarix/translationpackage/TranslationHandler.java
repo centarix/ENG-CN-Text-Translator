@@ -10,8 +10,11 @@ import java.nio.charset.StandardCharsets;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import java.io.IOException;
 
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class TranslationHandler {
@@ -19,12 +22,13 @@ public class TranslationHandler {
 	public String AdmAccessToken;
 	public String from = LanguageCodes.English;
 	public String to = LanguageCodes.Chinese;
-	public static String CLIENT_ID = "E7VWWToGOPOspQ2McQVK5g";
-	public static String CLIENT_SECRET = "hryznq3yjNoeu+UEQsfGaN07P1rHfDHY7lSl8Xubke8=";
+	public static String CLIENT_ID;
+	public static String CLIENT_SECRET;
         public TranslationDBService translationService = new TranslationDBService();
 
 	public TranslationHandler(String textToTranslate)
 	{
+            LoadPropertyValues();
             TranslationItem translation = null;
             DBLookup(textToTranslate);
             if(translation == null)
@@ -146,4 +150,17 @@ public class TranslationHandler {
 		}
 		return "";
 	}
+        
+        private void LoadPropertyValues()
+        {
+            GetBingPropertyValues propValues = new GetBingPropertyValues();
+            try 
+            {
+                propValues.getPropValues();
+            } catch (IOException ex) {
+                Logger.getLogger(TranslationHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            CLIENT_ID = propValues.getClientId();
+            CLIENT_SECRET = propValues.getClientSecret();
+        }
 }
