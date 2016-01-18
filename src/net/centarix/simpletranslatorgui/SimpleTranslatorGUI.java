@@ -15,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -35,9 +37,9 @@ public class SimpleTranslatorGUI extends Application {
     @Override
     public void start(Stage primaryStage) {
         final TextField resultTextField = new TextField("");
-        Button btn = new Button();
-        btn.setText("Translate");
-        
+        Image imageOk = new Image(getClass().getResourceAsStream("go_button.gif"));
+        Button btn = new Button("GO!", new ImageView(imageOk));
+        btn.setStyle("-fx-background-color:transparent; -fx-text-fill: #395306;");
 
         
         StackPane root = new StackPane();
@@ -94,7 +96,7 @@ public class SimpleTranslatorGUI extends Application {
             
         });
         
-        Scene scene = new Scene(grid, 500, 500);
+        Scene scene = new Scene(grid, 500, 200);
         
         
         primaryStage.setTitle("Simple English-Chinese Translator");
