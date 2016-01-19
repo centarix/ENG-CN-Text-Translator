@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -101,7 +102,7 @@ public class TranslationHandler {
 		}
 	}
         
-        public TranslationItem DBLookup(String textToTranslate)
+        public Optional<TranslationItem> DBLookup(String textToTranslate)
         {
             return translationService.findTranslationByEnglishText(textToTranslate);
         }

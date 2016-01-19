@@ -7,6 +7,7 @@
 package net.centarix.translationpackage;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -35,7 +36,7 @@ public class TranslationDBService {
         return translation;
     }
     
-    public TranslationItem findTranslationByEnglishText(String englishText) {
+    public Optional<TranslationItem> findTranslationByEnglishText(String englishText) {
         TranslationItem translation = new TranslationItem();
         
         tx.begin();
@@ -53,7 +54,7 @@ public class TranslationDBService {
         List<TranslationItem> translationList = query.getResultList();
         tx.commit();
         if(translationList.size() > 0)
-            return translationList.get(0);
+            return translationList.stream().findFirst();
         return null;
     }
     
