@@ -44,7 +44,7 @@ public class GetBingPropertyValues {
 			setClientSecret(prop.getProperty("clientSecret"));
  
 			result = "Bing Keys = " + getClientId() + ", " + getClientSecret();
-			System.out.println(result);
+			//System.out.println(result); //Debug purposes
 		} catch (Exception e) {
 			System.out.println("Exception: " + e);
 		} finally {
