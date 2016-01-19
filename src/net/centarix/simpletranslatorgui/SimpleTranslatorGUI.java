@@ -99,7 +99,7 @@ public class SimpleTranslatorGUI extends Application {
         Scene scene = new Scene(grid, 500, 200);
         
         
-        primaryStage.setTitle("Simple English-Chinese Translator");
+        primaryStage.setTitle("English-Chinese Translator");
         //primaryStage.initModality(Modality.WINDOW_MODAL);
         primaryStage.setScene(scene);
         scene.getStylesheets().add(SimpleTranslatorGUI.class.getResource("main.css").toExternalForm());
